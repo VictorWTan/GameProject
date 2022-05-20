@@ -1,14 +1,11 @@
-# GameProject
+# Game Project
+### <ins>**Game Project Inspiration**</ins>
 
- This game is inspired by Maplestory where they have a platformer jump quest where a player must jump through all platforms to exit the area and finish     the quest
- 
- If the player does not jump correctly or an obstacle bounces them off, they plummet to the bottom and have to start all over again
- 
- Game is also similiar to a lot of platformers like Mario or Jump King
+Welcome to my game! My game is inspired by the games Maplestory and Jump King, which are platformers. One aspect of Maplestory are their jump quests, where your character would jump from small platform to platform trying not to fall down. There are obstacles like spikes and that hurt the player and push them off. The game is meant to be grueling and a time sink where the player tries their hardest to jump passed all obstacles and finally reach the trophy only to fall down over and over again! Neat!
 
 
 
-
+### <ins>**Initial Game Approach**</ins>
  My start screen will need a normal character starting behind a start screen div
  Instructions will be posted into the background as text
  Text will stay with the background container as to not move as the character moves
@@ -29,7 +26,8 @@ If a block has an element of an obstacle, the character will flash in color indi
  For each block with id of platform, ladder, trophy, obstacle or player match the pixel width and height to images of assets
  Instead of score system, have blocks designated as NPC's that just exist and occasionally say things about how the player will not reach the top
 
- HTML Portion
+### <ins>**Pseudo Code**</ins>
+ <ins>HTML Portion</ins>
  
  Create a start title container
  
@@ -41,7 +39,7 @@ If a block has an element of an obstacle, the character will flash in color indi
  
  Create a game over screen and a restart button after the game is over
 
- CSS Portion
+ <ins>CSS Portion</ins>
  
  Set background to url
  
@@ -49,6 +47,6 @@ If a block has an element of an obstacle, the character will flash in color indi
  
  Set portions of divs = the image url
 
- JS Portion
+ <ins>JS Portion</ins>
 
-/ 1. Define variables for each element we have we need to access.
+ 1. Define variables for each element we have we need to access.
