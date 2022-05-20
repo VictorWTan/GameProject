@@ -30,16 +30,25 @@ If a block has an element of an obstacle, the character will flash in color indi
  Instead of score system, have blocks designated as NPC's that just exist and occasionally say things about how the player will not reach the top
 
  HTML Portion
+ 
  Create a start title container
+ 
  Fill text for the start title
+ 
  Create a the game container
-Create platform, player, obstacle, ladder, trophy, and NPC Divs with corresponding classes
+
+ Create platform, player, obstacle, ladder, trophy, and NPC Divs with corresponding classes
+ 
  Create a game over screen and a restart button after the game is over
 
  CSS Portion
+ 
  Set background to url
+ 
  Center the start screen div and have the display for start screen to become display: none on start
+ 
  Set portions of divs = the image url
 
  JS Portion
+
 / 1. Define variables for each element we have we need to access.
