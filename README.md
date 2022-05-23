@@ -49,4 +49,26 @@ If a block has an element of an obstacle, the character will flash in color indi
 
  <ins>JS Portion</ins>
 
- 1. Define variables for each element we have we need to access.
+1. Define variables for each element we have we need to access.
+
+1a. Define divs of trophy, player, platforms, obstacles, and NPC's.
+
+1b. Get context on the canvas for the background. Contain background images that pan less than the foreground canvas. Put the NPC's within that canvas so when the player goes up, the NPC's fade out of view.
+
+1c. Create a foreground canvas for the player to move in and scroll screen
+
+2. Create a class called Player and give it the properties of position, width, height, and velocity for gravity. 
+
+2a. Create functions to render and update the characters positions.
+
+3. Create player movement. WASD or Arrow Keys
+
+4. Create all the platforms, trophies, and other elements as blocks on the screen.
+
+5. Create scroll function for the background so that camera can pan directionally.
+
+6. Give blocks image assets according to their respective properties.
+
+7. Generate interaction for all the blocks when player collides with objects.
+
+8. Fine tunings
