@@ -3,15 +3,11 @@
 
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
-let platformImage = new Image()
+
 canvasOne.width = innerWidth
 canvasOne.height = innerHeight
 const gravity = .3
-platformImage.src= '/oak_woods_v1.0/oak_woods_tileset.png'
-platformImage.onload = () => {
-    ctxOne.drawImage(platformImage, 240, 0, 24, 24)
-}
-
+let onPlatform = false;
 
 
 // Creating a player with all properties 
@@ -51,16 +47,17 @@ class Player {
 }
 
 class Platform {
-    constructor(x, y, image) {
+    constructor(x, y) {
         this.x = x
         this.y = y
         this.width = 40
         this.height = 10
-        this.image = image
+
     }
     
     render(){
-        ctxOne.drawImage(this.image, this.x, this.y)
+        ctxOne.fillStyle = 'red'
+        ctxOne.fillRect(this.x, this.y, this.width, this.height)
     }
 }
 
@@ -68,8 +65,8 @@ class Platform {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(200, 500, platformImage), new Platform(500, 300, platformImage)]
-console.log(platforms)
+const platforms = [new Platform(200, 600), new Platform(500, 500)]
+
 
 
 const keys = {
@@ -78,7 +75,10 @@ const keys = {
     },
     left: {
         pressed: false
-    }  
+    },  
+    up: {
+        pressed: true
+    }
 }
 
 let scrollOffset = 0
@@ -110,11 +110,14 @@ const animate = () => {
         }
     }
     
+    
     // If the bottom of player hits the platform, the player stops moving. If they go to the edge, they fall off.
     platforms.forEach(platform =>  {
-        if (myPlayer.y + myPlayer.height <= platform.y && myPlayer.y + myPlayer.height + myPlayer.velocity.y >= platform.y && myPlayer.x + myPlayer.width >= platform.x && myPlayer.x <= platform.x + platform.width ) myPlayer.velocity.y = 0
+        if (myPlayer.y + myPlayer.height <= platform.y && myPlayer.y + myPlayer.height + myPlayer.velocity.y >= platform.y && myPlayer.x + myPlayer.width >= platform.x && myPlayer.x <= platform.x + platform.width ) {
+            myPlayer.velocity.y = 0
+        }
     })
-
+    if(myPlayer.velocity.y === 0) keys.up.pressed = true
 }
 
 
@@ -136,10 +139,13 @@ addEventListener('keydown', ({keyCode}) => {
         case 68: case 39:
         console.log('right')
         keys.right.pressed = true
-        myPlayer.velocity.x += 1
+        
         break
         case 38: case 87:
-        myPlayer.velocity.y += -12
+        if(keys.up.pressed) {
+            myPlayer.velocity.y += -12  
+            keys.up.pressed = false
+        }
         console.log('up')
         break
     }
