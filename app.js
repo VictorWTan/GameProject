@@ -1,9 +1,18 @@
 // Define variables for everything I need
+
+
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
+let platformImage = new Image()
 canvasOne.width = innerWidth
 canvasOne.height = innerHeight
-const gravity = 1.5
+const gravity = .3
+platformImage.src= '/oak_woods_v1.0/oak_woods_tileset.png'
+platformImage.onload = () => {
+    ctxOne.drawImage(platformImage, 240, 0, 24, 24)
+}
+
+
 
 // Creating a player with all properties 
 class Player {
@@ -23,7 +32,7 @@ class Player {
     // Create a function to render the player onto the canvas
     render(){
         // Fill a rectangle at the position x, y with width, height dimensions.
-        ctxOne.fillStyle = 'lavender'
+        ctxOne.fillStyle = 'blue'
         ctxOne.fillRect(this.x, this.y, this.width, this.height)
     }
     // Updating the player's movement over time
@@ -42,22 +51,25 @@ class Player {
 }
 
 class Platform {
-    constructor() {
-        this.x = 200
-        this.y = 200
-        this.width = 200
+    constructor(x, y, image) {
+        this.x = x
+        this.y = y
+        this.width = 40
         this.height = 10
+        this.image = image
     }
     
     render(){
-        ctxOne.fillStyle = 'red'
-        ctxOne.fillRect(this.x, this.y, this.width, this.height)
+        ctxOne.drawImage(this.image, this.x, this.y)
     }
 }
 
+
 // Create objects
-const aPlatform = new Platform()
+
 const myPlayer = new Player(30, 60)
+const platforms = [new Platform(200, 500, platformImage), new Platform(500, 300, platformImage)]
+console.log(platforms)
 
 
 const keys = {
@@ -69,23 +81,42 @@ const keys = {
     }  
 }
 
+let scrollOffset = 0
+
 const animate = () => {
     // Calls on itself to constantly animate the player
     requestAnimationFrame(animate)
     // Clear the canvas that was previously rendered on
     ctxOne.clearRect(0, 0, canvasOne.width, canvasOne.height)
     myPlayer.update()
-    aPlatform.render()
+    platforms.forEach(platform => {
+        platform.render()
+    })
     // If the right key is held, the player moves to the right
-    if (keys.right.pressed) myPlayer.velocity.x = 5
+    if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 5
     // If the left key is held, the player moves to the left
-    else if (keys.left.pressed) myPlayer.velocity.x = -5
+    else if (keys.left.pressed && myPlayer.x > 100) myPlayer.velocity.x = -5
     // Otherwise, the character is not moving
-    else myPlayer.velocity.x = 0
+    else {
+        myPlayer.velocity.x = 0
+        
+        if (keys.right.pressed) {
+            scrollOffset += 5
+            platforms.forEach(platform => platform.x -= 5) 
+        }
+        else if (keys.left.pressed) {
+            scrollOffset += 5
+            platforms.forEach(platform => platform.x += 5)
+        }
+    }
     
-    // If the bottom of player hits the platform, the player stops moving
-    if (myPlayer.y + myPlayer.height <= aPlatform.y && myPlayer.y + myPlayer.height + myPlayer.velocity.y >= aPlatform.y && myPlayer.x + myPlayer.width >= aPlatform.x && myPlayer.x <= aPlatform.x + aPlatform.width ) myPlayer.velocity.y = 0
+    // If the bottom of player hits the platform, the player stops moving. If they go to the edge, they fall off.
+    platforms.forEach(platform =>  {
+        if (myPlayer.y + myPlayer.height <= platform.y && myPlayer.y + myPlayer.height + myPlayer.velocity.y >= platform.y && myPlayer.x + myPlayer.width >= platform.x && myPlayer.x <= platform.x + platform.width ) myPlayer.velocity.y = 0
+    })
+
 }
+
 
 
 animate()
@@ -108,7 +139,7 @@ addEventListener('keydown', ({keyCode}) => {
         myPlayer.velocity.x += 1
         break
         case 38: case 87:
-        myPlayer.velocity.y += -20
+        myPlayer.velocity.y += -12
         console.log('up')
         break
     }
@@ -130,7 +161,7 @@ addEventListener('keyup', ({keyCode}) => {
         myPlayer.velocity.x = 0
         break
         case 38: case 87:
-        myPlayer.velocity.y += -20
+        myPlayer.velocity.y = 0
         console.log('up')
         break
     }
