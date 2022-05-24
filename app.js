@@ -6,7 +6,11 @@ let ctxOne = canvasOne.getContext('2d')
 let canvasTwo = document.getElementById('canvas-2')
 let ctxTwo = canvasTwo.getContext('2d')
 let platformSmall = new Image()
-platformSmall.src = '/oak_woods_v1.0/smallPlatform.bmp'
+let longPlatform = new Image()
+let longFloor = new Image()
+longFloor.src = '/oak_woods_v1.0/longFloor.png'
+longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
+platformSmall.src = '/oak_woods_v1.0/smallPlatform.png'
 
 canvasOne.width = 1200
 canvasOne.height = 800
@@ -81,7 +85,7 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(0, 750 , platformSmall), new Platform(400, 500, platformSmall)]
+const platforms = [new Platform(0, 700 , longPlatform), new Platform(500, 500, platformSmall), new Platform(250, 600, platformSmall)]
 
 
 
