@@ -33,13 +33,13 @@ let onPlatform = false;
 
 // Creating a player with all properties 
 class Player {
-    constructor(width, height){
+    constructor(){
         // Setting the position of the player
         this.x = 100
         this.y = 100
         // Giving dimensions to the character
-        this.width = width
-        this.height = height
+        this.width = playerChar.width
+        this.height = playerChar.height * 2.5
         this.image = playerChar
         this.frames = 0
         // Give the character velocity for moving directionally
@@ -107,35 +107,56 @@ class Scenery {
     }
 }
 
+class Obstacle {
+    constructor(x, y, width, height){
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+    }
+
+    render(){
+        ctxOne.fillStyle = 'red'
+        ctxOne.fillRect(this.x, this.y, this.width, this.height)
+    }
+}
+
 
 // Create objects
 
-const myPlayer = new Player(30, 60)
+const myPlayer = new Player()
+const newObstacle = new Obstacle(2060, 350, 20, 20)
 const platforms = [
-    new Platform(650, 450, platformSmall), 
-    new Platform(960, 400, platformSmall),
-    new Platform(1150, 300, platformSmall),
+    new Platform(690, 450, platformSmall), 
+    new Platform(1030, 400, platformSmall),
+    new Platform(1350, 340, platformSmall),
     new Platform(300, 520, longFloor), 
     new Platform(156, 520, longFloor), 
     new Platform(12, 520, longFloor), 
     new Platform(-132, 520, longFloor), 
     new Platform(-276, 520, longFloor), 
-    new Platform(1300, 400 , tinyPlatform), 
-    new Platform(1570, 460 , tinyPlatform)
+    new Platform(1700, 400 , tinyPlatform), 
+    new Platform(2060, 460 , tinyPlatform)
 ]
 const newScenery = [
     new Scenery(0, 420, backgroundLayerTwo),
     new Scenery(288, 420, backgroundLayerTwo), 
     new Scenery(-288, 420, backgroundLayerTwo), 
     new Scenery(576, 420, backgroundLayerTwo), 
-    new Scenery(864, 420, backgroundLayerTwo)
+    new Scenery(864, 420, backgroundLayerTwo),
+    new Scenery(1152, 420, backgroundLayerTwo)
 ]
 const newSceneryTwo = [
     new Scenery(0, 420, backgroundLayerThree), 
     new Scenery(288, 420, backgroundLayerThree), 
     new Scenery(-288, 420, backgroundLayerThree), 
     new Scenery(576, 420, backgroundLayerThree), 
-    new Scenery(864, 420, backgroundLayerThree)
+    new Scenery(864, 420, backgroundLayerThree),
+    new Scenery(1440, 420, backgroundLayerThree),
+    new Scenery(1152, 420, backgroundLayerThree),
+    new Scenery(1684, 420, backgroundLayerThree),
+    new Scenery(1928, 420, backgroundLayerThree),
+    new Scenery(2172, 420, backgroundLayerThree)
 ]
 
 // Storing values for the state of key presses
@@ -168,6 +189,7 @@ const animate = () => {
     platforms.forEach(platform => {
         platform.render()
     })
+    newObstacle.render()
     // If the right key is held, the player moves to the right
     if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 3
     // If the left key is held, the player moves to the left
