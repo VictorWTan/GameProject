@@ -40,8 +40,8 @@ class Player {
         this.x = 100
         this.y = 100
         // Giving dimensions to the character
-        this.width = playerChar.width
-        this.height = playerChar.height * 2.5
+        this.width = 40
+        this.height = 40
         this.image = playerChar
         this.frames = 0
         // Give the character velocity for moving directionally
@@ -55,7 +55,7 @@ class Player {
         // Fill a rectangle at the position x, y with width, height dimensions.
         ctxOne.drawImage(
             this.image, 
-            16,
+            0 * this.frames,
             0, 
             16, 
             16, 
@@ -66,7 +66,8 @@ class Player {
     }
     // Updating the player's movement over time
     update(){
-        
+        this.frames++
+        if (this.frame > 4) this.frames = 0
         // Invoking the render function to render character over time
         this.render()
         // Causing to move the player in a direction
