@@ -8,6 +8,8 @@ let ctxTwo = canvasTwo.getContext('2d')
 let platformSmall = new Image()
 let longPlatform = new Image()
 let longFloor = new Image()
+let lamp = new Image()
+lamp.src = '/oak_woods_v1.0/decorations/lamp.png'
 longFloor.src = '/oak_woods_v1.0/longFloor.png'
 longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
 platformSmall.src = '/oak_woods_v1.0/smallPlatform.png'
@@ -85,7 +87,7 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(0, 700 , longPlatform), new Platform(500, 500, platformSmall), new Platform(250, 600, platformSmall)]
+const platforms = [new Platform(700, 600 , longPlatform), new Platform(900, 500, platformSmall), new Platform(450, 600, platformSmall), new Platform(-900, 720, longFloor), new Platform(-20, 665, lamp)]
 
 
 
