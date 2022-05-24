@@ -14,8 +14,8 @@ longFloor.src = '/oak_woods_v1.0/longFloor.png'
 longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
 platformSmall.src = '/oak_woods_v1.0/smallPlatform.png'
 
-canvasOne.width = 1200
-canvasOne.height = 800
+canvasOne.width = 900
+canvasOne.height = 600
 const gravity = .3
 let onPlatform = false;
 
@@ -87,7 +87,7 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(700, 600 , longPlatform), new Platform(900, 500, platformSmall), new Platform(450, 600, platformSmall), new Platform(-900, 720, longFloor), new Platform(-20, 665, lamp)]
+const platforms = [new Platform(700, 300 , longPlatform), new Platform(900, 200, platformSmall), new Platform(450, 350, platformSmall), new Platform(-900, 520, longFloor), new Platform(-20, 465, lamp)]
 
 
 
