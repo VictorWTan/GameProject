@@ -111,9 +111,32 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [, new Platform(650, 450, platformSmall), new Platform(890, 400 , platformSmall), new Platform(1100, 300, platformSmall), new Platform(300, 520, longFloor), new Platform(156, 520, longFloor), new Platform(12, 520, longFloor), new Platform(-132, 520, longFloor), new Platform(-276, 520, longFloor), new Platform(1300, 400 , tinyPlatform), new Platform(1500, 460 , tinyPlatform)]
-const newScenery = [new Scenery(0, 420, backgroundLayerTwo), new Scenery(288, 420, backgroundLayerTwo), new Scenery(-288, 420, backgroundLayerTwo), new Scenery(576, 420, backgroundLayerTwo), new Scenery(864, 420, backgroundLayerTwo)]
-const newSceneryTwo = [new Scenery(0, 420, backgroundLayerThree), new Scenery(288, 420, backgroundLayerThree), new Scenery(-288, 420, backgroundLayerThree), new Scenery(576, 420, backgroundLayerThree), new Scenery(864, 420, backgroundLayerThree)]
+const platforms = [
+    new Platform(650, 450, platformSmall), 
+    new Platform(960, 400, platformSmall),
+    new Platform(1150, 300, platformSmall),
+    new Platform(300, 520, longFloor), 
+    new Platform(156, 520, longFloor), 
+    new Platform(12, 520, longFloor), 
+    new Platform(-132, 520, longFloor), 
+    new Platform(-276, 520, longFloor), 
+    new Platform(1300, 400 , tinyPlatform), 
+    new Platform(1570, 460 , tinyPlatform)
+]
+const newScenery = [
+    new Scenery(0, 420, backgroundLayerTwo),
+    new Scenery(288, 420, backgroundLayerTwo), 
+    new Scenery(-288, 420, backgroundLayerTwo), 
+    new Scenery(576, 420, backgroundLayerTwo), 
+    new Scenery(864, 420, backgroundLayerTwo)
+]
+const newSceneryTwo = [
+    new Scenery(0, 420, backgroundLayerThree), 
+    new Scenery(288, 420, backgroundLayerThree), 
+    new Scenery(-288, 420, backgroundLayerThree), 
+    new Scenery(576, 420, backgroundLayerThree), 
+    new Scenery(864, 420, backgroundLayerThree)
+]
 
 // Storing values for the state of key presses
 const keys = {
