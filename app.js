@@ -14,6 +14,7 @@ let playerChar = new Image()
 let backgroundLayerTwo = new Image()
 let backgroundLayerThree = new Image()
 let tinyPlatform = new Image()
+let imageObj = new Image()
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
@@ -29,6 +30,7 @@ canvasOne.width = 900
 canvasOne.height = 600
 const gravity = .14
 let onPlatform = false;
+
 
 
 // Creating a player with all properties 
