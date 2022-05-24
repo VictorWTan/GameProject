@@ -5,6 +5,7 @@ let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let canvasTwo = document.getElementById('canvas-2')
 let ctxTwo = canvasTwo.getContext('2d')
+// Creating images for each variable
 let platformSmall = new Image()
 let longPlatform = new Image()
 let longFloor = new Image()
@@ -12,6 +13,7 @@ let lamp = new Image()
 let playerChar = new Image()
 let backgroundLayerTwo = new Image()
 let backgroundLayerThree = new Image()
+// Linking each image to the relative path
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
 backgroundLayerThree.src = 'stringstar fields/background_2.png'
 lamp.src = '/oak_woods_v1.0/decorations/lamp.png'
@@ -49,7 +51,7 @@ class Player {
         // Fill a rectangle at the position x, y with width, height dimensions.
         ctxOne.drawImage(
             this.image, 
-            0,
+            16,
             0, 
             16, 
             16, 
@@ -75,6 +77,7 @@ class Player {
 }
 
 class Platform {
+    // Taking in a position and image for each platform
     constructor(x, y, image) {
         this.x = x
         this.y = y
@@ -82,13 +85,14 @@ class Platform {
         this.height = image.height
         this.image = image
     }
-    
+    // Render each platform at x, y with height and width equal to the image's dimensions
     render(){
         ctxOne.drawImage(this.image, this.x, this.y)
     }
 }
 
 class Scenery {
+    // Take an image for background scenery
     constructor(x, y, image) {
         this.x = x
         this.y = y
@@ -105,10 +109,11 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(590, 400 , longPlatform), new Platform(800, 300, platformSmall), new Platform(350, 450, platformSmall), new Platform(0, 470, longFloor), new Platform(-144, 470, longFloor), new Platform(-288, 470, longFloor), new Platform(-432, 470, longFloor), new Platform(-576, 470, longFloor)]
+const platforms = [new Platform(590, 400 , platformSmall), new Platform(800, 300, platformSmall), new Platform(350, 450, platformSmall), new Platform(0, 520, longFloor), new Platform(-144, 520, longFloor), new Platform(-288, 520, longFloor), new Platform(-432, 520, longFloor), new Platform(-576, 520, longFloor)]
 const newScenery = [new Scenery(0, 420, backgroundLayerTwo), new Scenery(288, 420, backgroundLayerTwo), new Scenery(-288, 420, backgroundLayerTwo), new Scenery(576, 420, backgroundLayerTwo), new Scenery(864, 420, backgroundLayerTwo)]
 const newSceneryTwo = [new Scenery(0, 420, backgroundLayerThree), new Scenery(288, 420, backgroundLayerThree), new Scenery(-288, 420, backgroundLayerThree), new Scenery(576, 420, backgroundLayerThree), new Scenery(864, 420, backgroundLayerThree)]
 
+// Storing values for the state of key presses
 const keys = {
     right: {
         pressed: false
@@ -145,7 +150,7 @@ const animate = () => {
     // Otherwise, the character is not moving
     else {
         myPlayer.velocity.x = 0
-        
+        // If the player presses the right key, we simulate scrolling by moving platforms and scenery
         if (keys.right.pressed) {
             scrollOffset += 5
             platforms.forEach(platform =>  platform.x -= 3)
@@ -153,6 +158,7 @@ const animate = () => {
             newSceneryTwo.forEach(scenery => scenery.x -= 1 ) 
             
         }
+        // If the player presses left key, we simulate scrolling by moving platforms and scenery to the left
         else if (keys.left.pressed) {
             scrollOffset += 5
             platforms.forEach(platform => platform.x += 3)
