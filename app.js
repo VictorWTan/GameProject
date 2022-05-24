@@ -9,10 +9,17 @@ let platformSmall = new Image()
 let longPlatform = new Image()
 let longFloor = new Image()
 let lamp = new Image()
+let playerChar = new Image()
+let backgroundLayerTwo = new Image()
+let backgroundLayerThree = new Image()
+backgroundLayerTwo.src = 'stringstar fields/background_1.png'
+backgroundLayerThree.src = 'stringstar fields/background_2.png'
 lamp.src = '/oak_woods_v1.0/decorations/lamp.png'
-longFloor.src = '/oak_woods_v1.0/longFloor.png'
+longFloor.src = 'stringstar fields/floor.png'
 longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
-platformSmall.src = '/oak_woods_v1.0/smallPlatform.png'
+platformSmall.src = 'stringstar fields/smallPlatform.png'
+playerChar.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4.png'
+
 
 canvasOne.width = 900
 canvasOne.height = 600
@@ -29,6 +36,8 @@ class Player {
         // Giving dimensions to the character
         this.width = width
         this.height = height
+        this.image = playerChar
+        this.frames = 0
         // Give the character velocity for moving directionally
         this.velocity = {
             x: 0,
@@ -38,11 +47,20 @@ class Player {
     // Create a function to render the player onto the canvas
     render(){
         // Fill a rectangle at the position x, y with width, height dimensions.
-        ctxOne.fillStyle = 'blue'
-        ctxOne.fillRect(this.x, this.y, this.width, this.height)
+        ctxOne.drawImage(
+            this.image, 
+            0,
+            0, 
+            16, 
+            16, 
+            this.x,
+            this.y,
+            this.width, 
+            this.height)
     }
     // Updating the player's movement over time
     update(){
+        
         // Invoking the render function to render character over time
         this.render()
         // Causing to move the player in a direction
@@ -74,8 +92,8 @@ class Scenery {
     constructor(x, y, image) {
         this.x = x
         this.y = y
-        this.width = image.width
-        this.height = image.height
+        this.width = 900
+        this.height = 600
         this.image = image
     }
     render(){
@@ -87,9 +105,9 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(700, 300 , longPlatform), new Platform(900, 200, platformSmall), new Platform(450, 350, platformSmall), new Platform(-900, 520, longFloor), new Platform(-20, 465, lamp)]
-
-
+const platforms = [new Platform(700, 300 , longPlatform), new Platform(900, 200, platformSmall), new Platform(450, 350, platformSmall), new Platform(0, 470, longFloor), new Platform(-144, 470, longFloor), new Platform(-288, 470, longFloor), new Platform(-432, 470, longFloor), new Platform(-576, 470, longFloor)]
+const newScenery = [new Scenery(0, 420, backgroundLayerTwo), new Scenery(288, 420, backgroundLayerTwo), new Scenery(-288, 420, backgroundLayerTwo), new Scenery(576, 420, backgroundLayerTwo), new Scenery(864, 420, backgroundLayerTwo)]
+const newSceneryTwo = [new Scenery(0, 420, backgroundLayerThree), new Scenery(288, 420, backgroundLayerThree), new Scenery(-288, 420, backgroundLayerThree), new Scenery(576, 420, backgroundLayerThree), new Scenery(864, 420, backgroundLayerThree)]
 
 const keys = {
     right: {
@@ -110,6 +128,12 @@ const animate = () => {
     requestAnimationFrame(animate)
     // Clear the canvas that was previously rendered on
     ctxOne.clearRect(0, 0, canvasOne.width, canvasOne.height)
+    newScenery.forEach(scenery => {
+        scenery.render()
+    })
+    newSceneryTwo.forEach(scenery => {
+        scenery.render()
+    })
     myPlayer.update()
     platforms.forEach(platform => {
         platform.render()
@@ -124,14 +148,16 @@ const animate = () => {
         
         if (keys.right.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform =>  platform.x -= 5
-        ) 
+            platforms.forEach(platform =>  platform.x -= 5)
+            newScenery.forEach(scenery => scenery.x -= 1 )    
+            newSceneryTwo.forEach(scenery => scenery.x -= 2 ) 
             
         }
         else if (keys.left.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform => platform.x += 5
-            )
+            platforms.forEach(platform => platform.x += 5)
+            newScenery.forEach(scenery => scenery.x += 1 )
+            newSceneryTwo.forEach(scenery => scenery.x += 2 ) 
             
         }
     }
