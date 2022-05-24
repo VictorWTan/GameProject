@@ -3,9 +3,11 @@
 
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
+let canvasTwo = document.getElementById('canvas-2')
+let ctxTwo = canvasTwo.getContext('2d')
 
-canvasOne.width = innerWidth
-canvasOne.height = innerHeight
+canvasOne.width = 1200
+canvasOne.height = 800
 const gravity = .3
 let onPlatform = false;
 
@@ -62,10 +64,11 @@ class Platform {
 }
 
 
+
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(200, 600), new Platform(500, 500)]
+const platforms = [new Platform(200, 600), new Platform(500, 500), new Platform (800, 400), new Platform (600, 300)]
 
 
 
@@ -103,10 +106,12 @@ const animate = () => {
         if (keys.right.pressed) {
             scrollOffset += 5
             platforms.forEach(platform => platform.x -= 5) 
+            
         }
         else if (keys.left.pressed) {
             scrollOffset += 5
             platforms.forEach(platform => platform.x += 5)
+            
         }
     }
     
@@ -116,6 +121,7 @@ const animate = () => {
         if (myPlayer.y + myPlayer.height <= platform.y && myPlayer.y + myPlayer.height + myPlayer.velocity.y >= platform.y && myPlayer.x + myPlayer.width >= platform.x && myPlayer.x <= platform.x + platform.width ) {
             myPlayer.velocity.y = 0
         }
+
     })
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
 }
