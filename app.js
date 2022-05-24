@@ -13,7 +13,9 @@ let lamp = new Image()
 let playerChar = new Image()
 let backgroundLayerTwo = new Image()
 let backgroundLayerThree = new Image()
+let tinyPlatform = new Image()
 // Linking each image to the relative path
+tinyPlatform.src = 'stringstar fields/platformtiny.png'
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
 backgroundLayerThree.src = 'stringstar fields/background_2.png'
 lamp.src = '/oak_woods_v1.0/decorations/lamp.png'
@@ -25,7 +27,7 @@ playerChar.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_
 
 canvasOne.width = 900
 canvasOne.height = 600
-const gravity = .3
+const gravity = .14
 let onPlatform = false;
 
 
@@ -109,7 +111,7 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(590, 400 , platformSmall), new Platform(800, 300, platformSmall), new Platform(350, 450, platformSmall), new Platform(0, 520, longFloor), new Platform(-144, 520, longFloor), new Platform(-288, 520, longFloor), new Platform(-432, 520, longFloor), new Platform(-576, 520, longFloor)]
+const platforms = [, new Platform(650, 450, platformSmall), new Platform(890, 400 , platformSmall), new Platform(1100, 300, platformSmall), new Platform(300, 520, longFloor), new Platform(156, 520, longFloor), new Platform(12, 520, longFloor), new Platform(-132, 520, longFloor), new Platform(-276, 520, longFloor), new Platform(1300, 400 , tinyPlatform), new Platform(1500, 460 , tinyPlatform)]
 const newScenery = [new Scenery(0, 420, backgroundLayerTwo), new Scenery(288, 420, backgroundLayerTwo), new Scenery(-288, 420, backgroundLayerTwo), new Scenery(576, 420, backgroundLayerTwo), new Scenery(864, 420, backgroundLayerTwo)]
 const newSceneryTwo = [new Scenery(0, 420, backgroundLayerThree), new Scenery(288, 420, backgroundLayerThree), new Scenery(-288, 420, backgroundLayerThree), new Scenery(576, 420, backgroundLayerThree), new Scenery(864, 420, backgroundLayerThree)]
 
@@ -202,7 +204,7 @@ addEventListener('keydown', ({keyCode}) => {
         break
         case 38: case 87:
         if(keys.up.pressed) {
-            myPlayer.velocity.y += -12  
+            myPlayer.velocity.y += -7 
             keys.up.pressed = false
         }
         console.log('up')
