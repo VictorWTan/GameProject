@@ -105,7 +105,7 @@ class Scenery {
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(700, 300 , longPlatform), new Platform(900, 200, platformSmall), new Platform(450, 350, platformSmall), new Platform(0, 470, longFloor), new Platform(-144, 470, longFloor), new Platform(-288, 470, longFloor), new Platform(-432, 470, longFloor), new Platform(-576, 470, longFloor)]
+const platforms = [new Platform(590, 400 , longPlatform), new Platform(800, 300, platformSmall), new Platform(350, 450, platformSmall), new Platform(0, 470, longFloor), new Platform(-144, 470, longFloor), new Platform(-288, 470, longFloor), new Platform(-432, 470, longFloor), new Platform(-576, 470, longFloor)]
 const newScenery = [new Scenery(0, 420, backgroundLayerTwo), new Scenery(288, 420, backgroundLayerTwo), new Scenery(-288, 420, backgroundLayerTwo), new Scenery(576, 420, backgroundLayerTwo), new Scenery(864, 420, backgroundLayerTwo)]
 const newSceneryTwo = [new Scenery(0, 420, backgroundLayerThree), new Scenery(288, 420, backgroundLayerThree), new Scenery(-288, 420, backgroundLayerThree), new Scenery(576, 420, backgroundLayerThree), new Scenery(864, 420, backgroundLayerThree)]
 
@@ -139,25 +139,25 @@ const animate = () => {
         platform.render()
     })
     // If the right key is held, the player moves to the right
-    if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 5
+    if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 3
     // If the left key is held, the player moves to the left
-    else if (keys.left.pressed && myPlayer.x > 100) myPlayer.velocity.x = -5
+    else if (keys.left.pressed && myPlayer.x > 100) myPlayer.velocity.x = -3
     // Otherwise, the character is not moving
     else {
         myPlayer.velocity.x = 0
         
         if (keys.right.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform =>  platform.x -= 5)
-            newScenery.forEach(scenery => scenery.x -= 1 )    
-            newSceneryTwo.forEach(scenery => scenery.x -= 2 ) 
+            platforms.forEach(platform =>  platform.x -= 3)
+            newScenery.forEach(scenery => scenery.x -= .5 )    
+            newSceneryTwo.forEach(scenery => scenery.x -= 1 ) 
             
         }
         else if (keys.left.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform => platform.x += 5)
-            newScenery.forEach(scenery => scenery.x += 1 )
-            newSceneryTwo.forEach(scenery => scenery.x += 2 ) 
+            platforms.forEach(platform => platform.x += 3)
+            newScenery.forEach(scenery => scenery.x += .5 )
+            newSceneryTwo.forEach(scenery => scenery.x += 1 ) 
             
         }
     }
