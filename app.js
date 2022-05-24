@@ -5,6 +5,8 @@ let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let canvasTwo = document.getElementById('canvas-2')
 let ctxTwo = canvasTwo.getContext('2d')
+let platformSmall = new Image()
+platformSmall.src = '/oak_woods_v1.0/smallPlatform.bmp'
 
 canvasOne.width = 1200
 canvasOne.height = 800
@@ -49,26 +51,37 @@ class Player {
 }
 
 class Platform {
-    constructor(x, y) {
+    constructor(x, y, image) {
         this.x = x
         this.y = y
-        this.width = 40
-        this.height = 10
-
+        this.width = image.width
+        this.height = image.height
+        this.image = image
     }
     
     render(){
-        ctxOne.fillStyle = 'red'
-        ctxOne.fillRect(this.x, this.y, this.width, this.height)
+        ctxOne.drawImage(this.image, this.x, this.y)
     }
 }
 
+class Scenery {
+    constructor(x, y, image) {
+        this.x = x
+        this.y = y
+        this.width = image.width
+        this.height = image.height
+        this.image = image
+    }
+    render(){
+        ctxOne.drawImage(this.image, this.x, this.y)
+    }
+}
 
 
 // Create objects
 
 const myPlayer = new Player(30, 60)
-const platforms = [new Platform(200, 600), new Platform(500, 500), new Platform (800, 400), new Platform (600, 300)]
+const platforms = [new Platform(0, 750 , platformSmall), new Platform(400, 500, platformSmall)]
 
 
 
@@ -105,12 +118,14 @@ const animate = () => {
         
         if (keys.right.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform => platform.x -= 5) 
+            platforms.forEach(platform =>  platform.x -= 5
+        ) 
             
         }
         else if (keys.left.pressed) {
             scrollOffset += 5
-            platforms.forEach(platform => platform.x += 5)
+            platforms.forEach(platform => platform.x += 5
+            )
             
         }
     }
