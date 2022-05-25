@@ -30,7 +30,9 @@ canvasOne.width = 900
 canvasOne.height = 600
 const gravity = .14
 let onPlatform = false;
-
+let frames = 0
+let gameFrame = 0
+const staggerFrames = 20
 
 
 // Creating a player with all properties 
@@ -43,7 +45,6 @@ class Player {
         this.width = 40
         this.height = 40
         this.image = playerChar
-        this.frames = 0
         // Give the character velocity for moving directionally
         this.velocity = {
             x: 0,
@@ -55,7 +56,7 @@ class Player {
         // Fill a rectangle at the position x, y with width, height dimensions.
         ctxOne.drawImage(
             this.image, 
-            0 * this.frames,
+            16 * frames,
             0, 
             16, 
             16, 
@@ -66,8 +67,11 @@ class Player {
     }
     // Updating the player's movement over time
     update(){
-        this.frames++
-        if (this.frame > 4) this.frames = 0
+        if (gameFrame %  staggerFrames == 0){
+            if (frames < 3) frames++
+            else frames = 0
+        }
+        gameFrame++
         // Invoking the render function to render character over time
         this.render()
         // Causing to move the player in a direction
@@ -188,10 +192,11 @@ const animate = () => {
     newSceneryTwo.forEach(scenery => {
         scenery.render()
     })
-    myPlayer.update()
+    
     platforms.forEach(platform => {
         platform.render()
     })
+    myPlayer.update()
     newObstacle.render()
     // If the right key is held, the player moves to the right
     if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 3
