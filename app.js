@@ -132,22 +132,8 @@ class Scenery {
     }
 }
 
-class Obstacle {
-    constructor(x, y, width, height){
-        this.x = x
-        this.y = y
-        this.width = width
-        this.height = height
-    }
-
-    render(){
-        ctxOne.fillStyle = 'red'
-        ctxOne.fillRect(this.x, this.y, this.width, this.height)
-    }
-}
 
 let myPlayer = new Player()
-let newObstacle = new Obstacle(2060, 350, 20, 20)
 let platforms = [
     new Platform(690, 450, platformSmall), 
     new Platform(1030, 400, platformSmall),
@@ -162,6 +148,10 @@ let platforms = [
     new Platform(2400, 500 , tinyPlatform),
     new Platform(2650, 350 , tinyPlatform),
     new Platform(2960, 460 , tinyPlatform),
+    new Platform(3320, 460 , tinyPlatform),
+    new Platform(3500, 250 , tinyPlatform),
+    new Platform(3850, 300, platformSmall),
+    new Platform(3946, 300, platformSmall),
 ]
 let newScenery = [
     new Scenery(0, 420, backgroundLayerTwo),
@@ -169,7 +159,8 @@ let newScenery = [
     new Scenery(-288, 420, backgroundLayerTwo), 
     new Scenery(576, 420, backgroundLayerTwo), 
     new Scenery(864, 420, backgroundLayerTwo),
-    new Scenery(1152, 420, backgroundLayerTwo)
+    new Scenery(1152, 420, backgroundLayerTwo),
+    new Scenery(1440, 420, backgroundLayerTwo)
 ]
 let newSceneryTwo = [
     new Scenery(0, 420, backgroundLayerThree), 
@@ -182,16 +173,23 @@ let newSceneryTwo = [
     new Scenery(1684, 420, backgroundLayerThree),
     new Scenery(1928, 420, backgroundLayerThree),
     new Scenery(2172, 420, backgroundLayerThree),
+    new Scenery(2416, 420, backgroundLayerThree),
+    new Scenery(2660, 420, backgroundLayerThree),
 ]
 
 let newLava = [
+    new Scenery(-785, 570, lava),
+    new Scenery(-273, 570, lava),
+    new Scenery(239, 570, lava),
     new Scenery(440, 570, lava),
     new Scenery(952, 570, lava),
     new Scenery(1464, 570, lava),
     new Scenery(1976, 570, lava),
     new Scenery(2488, 570, lava),
     new Scenery(3000, 570, lava),
-    new Scenery(3512, 570, lava)
+    new Scenery(3512, 570, lava),
+    new Scenery(4024, 570, lava),
+    new Scenery(4536, 570, lava),
 ]
 
 // Storing values for the state of key presses
@@ -211,7 +209,6 @@ const keys = {
 // Create objects
 function init() {
     myPlayer = new Player()
-    newObstacle = new Obstacle(2060, 350, 20, 20)
     platforms = [
         new Platform(690, 450, platformSmall), 
         new Platform(1030, 400, platformSmall),
@@ -226,6 +223,10 @@ function init() {
         new Platform(2400, 500 , tinyPlatform),
         new Platform(2650, 350 , tinyPlatform),
         new Platform(2960, 460 , tinyPlatform),
+        new Platform(3320, 460 , tinyPlatform),
+        new Platform(3500, 250 , tinyPlatform),
+        new Platform(3850, 300, platformSmall),
+        new Platform(3946, 300, platformSmall),
     ]
     newScenery = [
         new Scenery(0, 420, backgroundLayerTwo),
@@ -233,7 +234,8 @@ function init() {
         new Scenery(-288, 420, backgroundLayerTwo), 
         new Scenery(576, 420, backgroundLayerTwo), 
         new Scenery(864, 420, backgroundLayerTwo),
-        new Scenery(1152, 420, backgroundLayerTwo)
+        new Scenery(1152, 420, backgroundLayerTwo),
+        new Scenery(1440, 420, backgroundLayerTwo)
     ]
     newSceneryTwo = [
         new Scenery(0, 420, backgroundLayerThree), 
@@ -246,16 +248,23 @@ function init() {
         new Scenery(1684, 420, backgroundLayerThree),
         new Scenery(1928, 420, backgroundLayerThree),
         new Scenery(2172, 420, backgroundLayerThree),
+        new Scenery(2416, 420, backgroundLayerThree),
+        new Scenery(2660, 420, backgroundLayerThree),
     ]
 
     newLava = [
+        new Scenery(-785, 570, lava),
+        new Scenery(-273, 570, lava),
+        new Scenery(239, 570, lava),
         new Scenery(440, 570, lava),
         new Scenery(952, 570, lava),
         new Scenery(1464, 570, lava),
         new Scenery(1976, 570, lava),
         new Scenery(2488, 570, lava),
         new Scenery(3000, 570, lava),
-        new Scenery(3512, 570, lava)
+        new Scenery(3512, 570, lava),
+        new Scenery(4024, 570, lava),
+        new Scenery(4536, 570, lava),
     ]
 
 }   
@@ -279,7 +288,7 @@ const animate = () => {
         lava.render()
     })
     myPlayer.update()
-    newObstacle.render()
+    
     // If the right key is held, the player moves to the right
     if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 2
     // If the left key is held, the player moves to the left
@@ -289,7 +298,7 @@ const animate = () => {
         myPlayer.velocity.x = 0
         // If the player presses the right key, we simulate scrolling by moving platforms and scenery
         if (keys.right.pressed) {
-            scrollOffset += 5
+            scrollOffset += 2
             platforms.forEach(platform =>  platform.x -= 2)
             newLava.forEach(lava => lava.x -= 2)
             newScenery.forEach(scenery => scenery.x -= .5 )    
@@ -298,7 +307,7 @@ const animate = () => {
         }
         // If the player presses left key, we simulate scrolling by moving platforms and scenery to the left
         else if (keys.left.pressed) {
-            scrollOffset += 5
+            scrollOffset -= 2
             platforms.forEach(platform => platform.x += 2)
             newLava.forEach(lava => lava.x += 2)
             newScenery.forEach(scenery => scenery.x += .5 )
@@ -320,6 +329,9 @@ const animate = () => {
 
     })
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
+
+    //Win Condition
+    if (scrollOffset > 8000) console.log('You Win')
 
     // Lose condtion
     if(myPlayer.y > canvasOne.height) init()
