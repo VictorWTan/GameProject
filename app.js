@@ -1,10 +1,10 @@
-// Define variables for everything I need
-
+// Define variables for the canvas
 
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let canvasTwo = document.getElementById('canvas-2')
 let ctxTwo = canvasTwo.getContext('2d')
+
 // Creating images for each variable
 let platformSmall = new Image()
 let longPlatform = new Image()
@@ -34,6 +34,7 @@ playerCharRunLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_
 playerCharLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4_left.png'
 lava.src = 'stringstar fields/Lava_64x32.png'
 
+// Setting Global Variables
 canvasOne.width = 900
 canvasOne.height = 600
 const gravity = .08
@@ -41,7 +42,6 @@ let onPlatform = false;
 let frames = 0
 let gameFrame = 0
 const staggerFrames = 22
-let scrollOffset = 0
 
 
 // Creating a player with all properties 
@@ -132,7 +132,7 @@ class Scenery {
     }
 }
 
-
+// Creating all the objects
 let myPlayer = new Player()
 let platforms = [
     new Platform(690, 450, platformSmall), 
@@ -205,8 +205,10 @@ const keys = {
     }
 }
 
+let scrollOffset = 0
 
-// Create objects
+
+// On death, reset the position of everything
 function init() {
     myPlayer = new Player()
     platforms = [
@@ -266,6 +268,8 @@ function init() {
         new Scenery(4024, 570, lava),
         new Scenery(4536, 570, lava),
     ]
+
+    scrollOffset = 0
 
 }   
 
@@ -346,6 +350,7 @@ animate()
 addEventListener('keydown', ({keyCode}) => {
     //console.log(keyCode)
     switch(keyCode){
+        // If the a button is pressed, the running animation gets set 
         case 65: case 37:
         console.log('left')
         keys.left.pressed = true
@@ -370,7 +375,8 @@ addEventListener('keydown', ({keyCode}) => {
 })
 // Add event listener for when keys are let go
 addEventListener('keyup', ({keyCode}) => {
-    //console.log(keyCode)
+    // console.log(keyCode)
+    // When the key is let go, the player by default is standing left or right
     switch(keyCode){
         case 65: case 37:
         console.log('left')
