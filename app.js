@@ -2,8 +2,8 @@
 
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
-let canvasTwo = document.getElementById('canvas-2')
-let ctxTwo = canvasTwo.getContext('2d')
+let myAudio = document.getElementById('myAudio')
+myAudio.volume = 0.5
 
 // Creating images for each variable
 let platformSmall = new Image()
@@ -23,6 +23,7 @@ let slope = new Image()
 let slopeFloor = new Image()
 let tallTower = new Image()
 let stairSlopeRight = new Image()
+let basePlatform = new Image()
 
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
@@ -41,6 +42,7 @@ slope.src = 'stringstar fields/slope.png'
 slopeFloor.src = 'stringstar fields/slopeFloor.png'
 tallTower.src = 'stringstar fields/tallTower.png'
 stairSlopeRight.src = 'stringstar fields/stairSlopeRight.png'
+basePlatform.src = 'stringstar fields/basePlatform.png'
 
 // Setting Global Variables
 canvasOne.width = 900
@@ -147,12 +149,7 @@ let platforms = [
     new Platform(1050, 340, tallTower),
     new Platform(2600, 200, platformSmall),
     new Platform(1355, 560, stairSlopeRight),
-
-    new Platform(300, 520, longFloor), 
-    new Platform(156, 520, longFloor), 
-    new Platform(12, 520, longFloor), 
-    new Platform(-132, 520, longFloor), 
-    new Platform(-276, 520, longFloor),  
+    new Platform(-900, 520, basePlatform),  
 
     new Platform(910, 190 , tinyPlatform),
     new Platform(1240, 110 , tinyPlatform),
@@ -171,6 +168,7 @@ let platforms = [
     new Platform(3891, 300, platformSmall),
 ]
 let newScenery = [
+    new Scenery(-576, 420, backgroundLayerTwo),
     new Scenery(0, 420, backgroundLayerTwo),
     new Scenery(288, 420, backgroundLayerTwo), 
     new Scenery(-288, 420, backgroundLayerTwo), 
@@ -180,6 +178,8 @@ let newScenery = [
     new Scenery(1440, 420, backgroundLayerTwo)
 ]
 let newSceneryTwo = [
+    new Scenery(-864, 420, backgroundLayerThree),
+    new Scenery(-576, 420, backgroundLayerThree),
     new Scenery(0, 420, backgroundLayerThree), 
     new Scenery(288, 420, backgroundLayerThree), 
     new Scenery(-288, 420, backgroundLayerThree), 
@@ -195,6 +195,7 @@ let newSceneryTwo = [
 ]
 
 let newLava = [
+    new Scenery(-1297, 570, lava),
     new Scenery(-785, 570, lava),
     new Scenery(-273, 570, lava),
     new Scenery(239, 570, lava),
