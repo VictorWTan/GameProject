@@ -15,6 +15,7 @@ let backgroundLayerTwo = new Image()
 let backgroundLayerThree = new Image()
 let tinyPlatform = new Image()
 let imageObj = new Image()
+let playerCharRunRight = new Image()
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
@@ -24,7 +25,7 @@ longFloor.src = 'stringstar fields/floor.png'
 longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
 platformSmall.src = 'stringstar fields/smallPlatform.png'
 playerChar.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4.png'
-
+playerCharRunRight.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_strip_6.png'
 
 canvasOne.width = 900
 canvasOne.height = 600
@@ -45,6 +46,15 @@ class Player {
         this.width = 40
         this.height = 40
         this.image = playerChar
+        this.sprites = {
+            stand: {
+                right: playerChar
+            },
+            run: {
+                right: playerCharRunRight
+            }
+        }
+        this.currentSprite = this.sprites.stand.right
         // Give the character velocity for moving directionally
         this.velocity = {
             x: 0,
@@ -55,7 +65,7 @@ class Player {
     render(){
         // Fill a rectangle at the position x, y with width, height dimensions.
         ctxOne.drawImage(
-            this.image, 
+            this.currentSprite, 
             16 * frames,
             0, 
             16, 
@@ -253,7 +263,7 @@ addEventListener('keydown', ({keyCode}) => {
         case 68: case 39:
         console.log('right')
         keys.right.pressed = true
-        
+        myPlayer.currentSprite = myPlayer.sprites.run.right
         break
         case 38: case 87:
         if(keys.up.pressed) {
@@ -278,6 +288,7 @@ addEventListener('keyup', ({keyCode}) => {
         case 68: case 39:
         console.log('right')
         keys.right.pressed = false
+        myPlayer.currentSprite = myPlayer.sprites.stand.right
         myPlayer.velocity.x = 0
         break
         case 38: case 87:
