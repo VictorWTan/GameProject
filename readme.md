@@ -1,7 +1,7 @@
 # Game Project
 ### <ins>**Game Project Inspiration**</ins>
 
-Welcome to my game! My game is inspired by the games Maplestory and Jump King, which are platformers. One aspect of Maplestory are their jump quests, where your character would jump from small platform to platform trying not to fall down. There are obstacles like spikes and that hurt the player and push them off. The game is meant to be grueling and a time sink where the player tries their hardest to jump passed all obstacles and finally reach the trophy only to fall down over and over again! Neat!
+Welcome to my game! My game is inspired by the games Maplestory and Jump King, which are platformers. One aspect of Maplestory are their jump quests, where your character would jump from small platform to platform trying not to fall down.  The game is meant to be grueling and a time sink where the player tries their hardest to jump platform to platform and finally reach the end only to fall down over and over again! Neat!
 
 ![Maplestory Jump Quest](https://preview.redd.it/fb52pq65m8qx.png?width=1024&auto=webp&s=7682809818d8681f266e727c22bb61c923f7d337)
 ![Jump King](https://nexile.se/wp-content/uploads/2019/04/Jump_King_screenshot_6.png)

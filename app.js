@@ -19,6 +19,10 @@ let playerCharRunRight = new Image()
 let playerCharRunLeft = new Image()
 let playerCharLeft = new Image()
 let lava = new Image()
+let slope = new Image()
+let slopeFloor = new Image()
+let tallTower = new Image()
+let stairSlopeRight = new Image()
 
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
@@ -33,6 +37,10 @@ playerCharRunRight.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim
 playerCharRunLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_strip_6_left.png'
 playerCharLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4_left.png'
 lava.src = 'stringstar fields/Lava_64x32.png'
+slope.src = 'stringstar fields/slope.png'
+slopeFloor.src = 'stringstar fields/slopeFloor.png'
+tallTower.src = 'stringstar fields/tallTower.png'
+stairSlopeRight.src = 'stringstar fields/stairSlopeRight.png'
 
 // Setting Global Variables
 canvasOne.width = 900
@@ -99,7 +107,7 @@ class Player {
         this.x += this.velocity.x
         // Add gravity aka acceleration
         if (this.y + this.height + this.velocity.y <= canvasOne.height) this.velocity.y += gravity
-        
+        else this.velocity.y = 0
     }
 }
 
@@ -135,23 +143,32 @@ class Scenery {
 // Creating all the objects
 let myPlayer = new Player()
 let platforms = [
-    new Platform(690, 450, platformSmall), 
-    new Platform(1030, 400, platformSmall),
-    new Platform(1350, 340, platformSmall),
+    new Platform(690, 430, platformSmall), 
+    new Platform(1050, 340, tallTower),
+    new Platform(2600, 200, platformSmall),
+    new Platform(1355, 560, stairSlopeRight),
+
     new Platform(300, 520, longFloor), 
     new Platform(156, 520, longFloor), 
     new Platform(12, 520, longFloor), 
     new Platform(-132, 520, longFloor), 
-    new Platform(-276, 520, longFloor), 
-    new Platform(1700, 400 , tinyPlatform), 
-    new Platform(2060, 460 , tinyPlatform),
-    new Platform(2400, 500 , tinyPlatform),
-    new Platform(2650, 350 , tinyPlatform),
-    new Platform(2960, 460 , tinyPlatform),
-    new Platform(3320, 460 , tinyPlatform),
-    new Platform(3500, 250 , tinyPlatform),
-    new Platform(3850, 300, platformSmall),
-    new Platform(3946, 300, platformSmall),
+    new Platform(-276, 520, longFloor),  
+
+    new Platform(910, 190 , tinyPlatform),
+    new Platform(1240, 110 , tinyPlatform),
+    new Platform(1635, 170 , tinyPlatform),
+    new Platform(1800, 550, slopeFloor),
+    new Platform(2110, 460 , tinyPlatform),
+    new Platform(2210, 420 , tinyPlatform),
+    new Platform(2310, 380 , tinyPlatform),
+    new Platform(2700, 230 , tinyPlatform),
+    new Platform(2750, 260 , tinyPlatform),
+    new Platform(2800, 290 , tinyPlatform),
+    new Platform(3020, 460 , longFloor),
+    new Platform(3395, 253 , tinyPlatform),
+    
+    new Platform(3795, 300, platformSmall),
+    new Platform(3891, 300, platformSmall),
 ]
 let newScenery = [
     new Scenery(0, 420, backgroundLayerTwo),
@@ -212,16 +229,22 @@ let scrollOffset = 0
 function init() {
     myPlayer = new Player()
     platforms = [
-        new Platform(690, 450, platformSmall), 
-        new Platform(1030, 400, platformSmall),
-        new Platform(1350, 340, platformSmall),
+        new Platform(690, 430, platformSmall), 
+        new Platform(1080, 340, platformSmall),
+    
         new Platform(300, 520, longFloor), 
         new Platform(156, 520, longFloor), 
         new Platform(12, 520, longFloor), 
         new Platform(-132, 520, longFloor), 
-        new Platform(-276, 520, longFloor), 
-        new Platform(1700, 400 , tinyPlatform), 
+        new Platform(-276, 520, longFloor),  
+    
+        new Platform(870, 190 , tinyPlatform),
+        new Platform(1120, 110 , tinyPlatform),
+        new Platform(1380, 120 , tinyPlatform),
+        new Platform(1650, 170 , tinyPlatform),
         new Platform(2060, 460 , tinyPlatform),
+        new Platform(2160, 440 , tinyPlatform),
+        new Platform(2260, 420 , tinyPlatform),
         new Platform(2400, 500 , tinyPlatform),
         new Platform(2650, 350 , tinyPlatform),
         new Platform(2960, 460 , tinyPlatform),
@@ -253,7 +276,7 @@ function init() {
         new Scenery(2416, 420, backgroundLayerThree),
         new Scenery(2660, 420, backgroundLayerThree),
     ]
-
+    
     newLava = [
         new Scenery(-785, 570, lava),
         new Scenery(-273, 570, lava),
@@ -338,7 +361,7 @@ const animate = () => {
     if (scrollOffset > 8000) console.log('You Win')
 
     // Lose condtion
-    if(myPlayer.y > canvasOne.height) init()
+    //if(myPlayer.y > canvasOne.height) init()
 }
 
 
