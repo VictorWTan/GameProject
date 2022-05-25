@@ -16,6 +16,8 @@ let backgroundLayerThree = new Image()
 let tinyPlatform = new Image()
 let imageObj = new Image()
 let playerCharRunRight = new Image()
+let playerCharRunLeft = new Image()
+let playerCharLeft = new Image()
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
@@ -26,7 +28,8 @@ longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
 platformSmall.src = 'stringstar fields/smallPlatform.png'
 playerChar.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4.png'
 playerCharRunRight.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_strip_6.png'
-
+playerCharRunLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_strip_6_left.png'
+playerCharLeft.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4_left.png'
 canvasOne.width = 900
 canvasOne.height = 600
 const gravity = .14
@@ -48,10 +51,12 @@ class Player {
         this.image = playerChar
         this.sprites = {
             stand: {
-                right: playerChar
+                right: playerChar,
+                left: playerCharLeft
             },
             run: {
-                right: playerCharRunRight
+                right: playerCharRunRight,
+                left: playerCharRunLeft
             }
         }
         this.currentSprite = this.sprites.stand.right
@@ -256,6 +261,7 @@ addEventListener('keydown', ({keyCode}) => {
         case 65: case 37:
         console.log('left')
         keys.left.pressed = true
+        myPlayer.currentSprite = myPlayer.sprites.run.left
         break
         case 83: case 40:
         console.log('down')
@@ -281,6 +287,7 @@ addEventListener('keyup', ({keyCode}) => {
         case 65: case 37:
         console.log('left')
         keys.left.pressed = false
+        myPlayer.currentSprite = myPlayer.sprites.stand.left
         break
         case 83: case 40:
         console.log('down')
