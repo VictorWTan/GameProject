@@ -3,7 +3,7 @@
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let myAudio = document.getElementById('myAudio')
-myAudio.volume = 0.3
+myAudio.volume = 0.1
 
 // Creating images for each variable
 let platformSmall = new Image()
@@ -225,7 +225,7 @@ let newLava = [
     new Scenery(4630, 306, flame),
     new Scenery(4800, 406, flame),
     new Scenery(5060, 250, flame),
-    new Scenery(4360, 490, shield),
+    new Scenery(4400, 460, shield),
 
 ]
 
