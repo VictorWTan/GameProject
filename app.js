@@ -3,7 +3,7 @@
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let myAudio = document.getElementById('myAudio')
-myAudio.volume = 0.5
+myAudio.volume = 0.3
 
 // Creating images for each variable
 let platformSmall = new Image()
@@ -24,6 +24,11 @@ let slopeFloor = new Image()
 let tallTower = new Image()
 let stairSlopeRight = new Image()
 let basePlatform = new Image()
+let endHouse = new Image()
+let door = new Image()
+let flame = new Image()
+let shield = new Image()
+let miscObjects = new Image()
 
 // Linking each image to the relative path
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
@@ -43,6 +48,11 @@ slopeFloor.src = 'stringstar fields/slopeFloor.png'
 tallTower.src = 'stringstar fields/tallTower.png'
 stairSlopeRight.src = 'stringstar fields/stairSlopeRight.png'
 basePlatform.src = 'stringstar fields/basePlatform.png'
+endHouse.src = 'stringstar fields/endHouse.png'
+door.src = 'stringstar fields/door.png'
+flame.src = 'stringstar fields/flame.png'
+shield.src = 'stringstar fields/shield.png'
+miscObjects.src = 'stringstar fields/miscObjects.png'
 
 // Setting Global Variables
 canvasOne.width = 900
@@ -149,7 +159,8 @@ let platforms = [
     new Platform(1050, 340, tallTower),
     new Platform(2600, 200, platformSmall),
     new Platform(1355, 560, stairSlopeRight),
-    new Platform(-900, 520, basePlatform),  
+    new Platform(-900, 520, basePlatform), 
+    new Platform(4250, 576, basePlatform), 
 
     new Platform(910, 190 , tinyPlatform),
     new Platform(1240, 110 , tinyPlatform),
@@ -208,6 +219,14 @@ let newLava = [
     new Scenery(3512, 570, lava),
     new Scenery(4024, 570, lava),
     new Scenery(4536, 570, lava),
+    new Scenery(4250, 0, endHouse),
+    new Scenery(4400, 220, flame),
+    new Scenery(4600, 506, door),
+    new Scenery(4630, 306, flame),
+    new Scenery(4800, 406, flame),
+    new Scenery(5060, 250, flame),
+    new Scenery(4360, 490, shield),
+
 ]
 
 // Storing values for the state of key presses
