@@ -34,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Creating images for each variable
 let platformSmall = new Image()
-let longPlatform = new Image()
 let longFloor = new Image()
-let lamp = new Image()
 let playerChar = new Image()
 let backgroundLayerTwo = new Image()
 let backgroundLayerThree = new Image()
@@ -61,9 +59,7 @@ let miscObjects = new Image()
 tinyPlatform.src = 'stringstar fields/platformtiny.png'
 backgroundLayerTwo.src = 'stringstar fields/background_1.png'
 backgroundLayerThree.src = 'stringstar fields/background_2.png'
-lamp.src = '/oak_woods_v1.0/decorations/lamp.png'
 longFloor.src = 'stringstar fields/floor.png'
-longPlatform.src = '/oak_woods_v1.0/longPlatform.png'
 platformSmall.src = 'stringstar fields/smallPlatform.png'
 playerChar.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_idle_anim_strip_4.png'
 playerCharRunRight.src = 'oak_woods_v1.0/herochar sprites(new)/herochar_run_anim_strip_6.png'
