@@ -10,6 +10,7 @@ myAudio.volume = 0.05
 const startGame = () => {
     startScreen.style.display = 'none'
     canvasOne.style.display = 'flex'
+    gameStart = false;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -74,6 +75,7 @@ let onPlatform = false;
 let frames = 0
 let gameFrame = 0
 const staggerFrames = 22
+let gameStart = true;
 let gameOver = false;
 
 
@@ -347,7 +349,7 @@ const animate = () => {
     newLava.forEach(lava => {
         lava.render()
     })
-    myPlayer.update()
+    if(gameStart === false)myPlayer.update()
     
     // If the right key is held, the player moves to the right
     if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 2
@@ -391,7 +393,7 @@ const animate = () => {
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
 
     //Win Condition
-    if (scrollOffset > 8000) console.log('You Win')
+    if (scrollOffset > 4100) console.log('You Win')
 
     // Lose condtion
     //if(myPlayer.y > canvasOne.height) init()
