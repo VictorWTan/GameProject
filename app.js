@@ -353,9 +353,9 @@ const animate = () => {
     if(gameStart === false)myPlayer.update()
     
     // If the right key is held, the player moves to the right
-    if (keys.right.pressed && myPlayer.x < 400) myPlayer.velocity.x = 2
+    if (keys.right.pressed && myPlayer.x < 450) myPlayer.velocity.x = 2
     // If the left key is held, the player moves to the left
-    else if (keys.left.pressed && myPlayer.x > 100) myPlayer.velocity.x = -2
+    else if (keys.left.pressed && myPlayer.x > 200) myPlayer.velocity.x = -2
     // Otherwise, the character is not moving
     else {
         myPlayer.velocity.x = 0
