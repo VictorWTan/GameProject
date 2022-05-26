@@ -58,13 +58,13 @@ body {
     font-family: 'Press Start 2P', cursive;
     color: rgb(243, 243, 222);
     border-style: solid;
-    border-width: 2px;
+    border-width: 3px;
     background: #ebe9da;
     font-weight: bold; 
     font-size: 18px;
     padding: 16px 8px;
     margin: 30px;
-    box-shadow: 3px 3.1px rgb(82, 77, 77);
+    box-shadow: 4px 4.1px rgb(82, 77, 77);
     transition-duration: 0.4s;
     cursor: point;
     left: 30%;

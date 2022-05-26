@@ -18,6 +18,7 @@ const playMusic = () => {
 const startGame = () => {
     startScreen.style.display = 'none'
     canvasOne.style.display = 'flex'
+    startAudio.pause()
     myAudio.play()
     gameStart = false;
 }
@@ -275,70 +276,80 @@ let scrollOffset = 0
 
 // On death, reset the position of everything
 function init() {
-    myPlayer = new Player()
-    platforms = [
-        new Platform(690, 430, platformSmall), 
-        new Platform(1080, 340, platformSmall),
+myPlayer = new Player()
+platforms = [
+    new Platform(690, 430, platformSmall), 
+    new Platform(1050, 340, tallTower),
+    new Platform(2600, 200, platformSmall),
+    new Platform(1355, 560, stairSlopeRight),
+    new Platform(-900, 520, basePlatform), 
+    new Platform(4250, 576, basePlatform), 
+
+    new Platform(910, 190 , tinyPlatform),
+    new Platform(1240, 110 , tinyPlatform),
+    new Platform(1635, 170 , tinyPlatform),
+    new Platform(1800, 550, slopeFloor),
+    new Platform(2110, 460 , tinyPlatform),
+    new Platform(2210, 420 , tinyPlatform),
+    new Platform(2310, 380 , tinyPlatform),
+    new Platform(2700, 230 , tinyPlatform),
+    new Platform(2750, 260 , tinyPlatform),
+    new Platform(2800, 290 , tinyPlatform),
+    new Platform(3020, 460 , longFloor),
+    new Platform(3395, 253 , tinyPlatform),
     
-        new Platform(300, 520, longFloor), 
-        new Platform(156, 520, longFloor), 
-        new Platform(12, 520, longFloor), 
-        new Platform(-132, 520, longFloor), 
-        new Platform(-276, 520, longFloor),  
-    
-        new Platform(870, 190 , tinyPlatform),
-        new Platform(1120, 110 , tinyPlatform),
-        new Platform(1380, 120 , tinyPlatform),
-        new Platform(1650, 170 , tinyPlatform),
-        new Platform(2060, 460 , tinyPlatform),
-        new Platform(2160, 440 , tinyPlatform),
-        new Platform(2260, 420 , tinyPlatform),
-        new Platform(2400, 500 , tinyPlatform),
-        new Platform(2650, 350 , tinyPlatform),
-        new Platform(2960, 460 , tinyPlatform),
-        new Platform(3320, 460 , tinyPlatform),
-        new Platform(3500, 250 , tinyPlatform),
-        new Platform(3850, 300, platformSmall),
-        new Platform(3946, 300, platformSmall),
-    ]
-    newScenery = [
-        new Scenery(0, 420, backgroundLayerTwo),
-        new Scenery(288, 420, backgroundLayerTwo), 
-        new Scenery(-288, 420, backgroundLayerTwo), 
-        new Scenery(576, 420, backgroundLayerTwo), 
-        new Scenery(864, 420, backgroundLayerTwo),
-        new Scenery(1152, 420, backgroundLayerTwo),
-        new Scenery(1440, 420, backgroundLayerTwo)
-    ]
-    newSceneryTwo = [
-        new Scenery(0, 420, backgroundLayerThree), 
-        new Scenery(288, 420, backgroundLayerThree), 
-        new Scenery(-288, 420, backgroundLayerThree), 
-        new Scenery(576, 420, backgroundLayerThree), 
-        new Scenery(864, 420, backgroundLayerThree),
-        new Scenery(1440, 420, backgroundLayerThree),
-        new Scenery(1152, 420, backgroundLayerThree),
-        new Scenery(1684, 420, backgroundLayerThree),
-        new Scenery(1928, 420, backgroundLayerThree),
-        new Scenery(2172, 420, backgroundLayerThree),
-        new Scenery(2416, 420, backgroundLayerThree),
-        new Scenery(2660, 420, backgroundLayerThree),
-    ]
-    
-    newLava = [
-        new Scenery(-785, 570, lava),
-        new Scenery(-273, 570, lava),
-        new Scenery(239, 570, lava),
-        new Scenery(440, 570, lava),
-        new Scenery(952, 570, lava),
-        new Scenery(1464, 570, lava),
-        new Scenery(1976, 570, lava),
-        new Scenery(2488, 570, lava),
-        new Scenery(3000, 570, lava),
-        new Scenery(3512, 570, lava),
-        new Scenery(4024, 570, lava),
-        new Scenery(4536, 570, lava),
-    ]
+    new Platform(3795, 300, platformSmall),
+    new Platform(3891, 300, platformSmall),
+]
+newScenery = [
+    new Scenery(-576, 420, backgroundLayerTwo),
+    new Scenery(0, 420, backgroundLayerTwo),
+    new Scenery(288, 420, backgroundLayerTwo), 
+    new Scenery(-288, 420, backgroundLayerTwo), 
+    new Scenery(576, 420, backgroundLayerTwo), 
+    new Scenery(864, 420, backgroundLayerTwo),
+    new Scenery(1152, 420, backgroundLayerTwo),
+    new Scenery(1440, 420, backgroundLayerTwo)
+]
+newSceneryTwo = [
+    new Scenery(-864, 420, backgroundLayerThree),
+    new Scenery(-576, 420, backgroundLayerThree),
+    new Scenery(0, 420, backgroundLayerThree), 
+    new Scenery(288, 420, backgroundLayerThree), 
+    new Scenery(-288, 420, backgroundLayerThree), 
+    new Scenery(576, 420, backgroundLayerThree), 
+    new Scenery(864, 420, backgroundLayerThree),
+    new Scenery(1440, 420, backgroundLayerThree),
+    new Scenery(1152, 420, backgroundLayerThree),
+    new Scenery(1684, 420, backgroundLayerThree),
+    new Scenery(1928, 420, backgroundLayerThree),
+    new Scenery(2172, 420, backgroundLayerThree),
+    new Scenery(2416, 420, backgroundLayerThree),
+    new Scenery(2660, 420, backgroundLayerThree),
+]
+
+newLava = [
+    new Scenery(-1297, 570, lava),
+    new Scenery(-785, 570, lava),
+    new Scenery(-273, 570, lava),
+    new Scenery(239, 570, lava),
+    new Scenery(440, 570, lava),
+    new Scenery(952, 570, lava),
+    new Scenery(1464, 570, lava),
+    new Scenery(1976, 570, lava),
+    new Scenery(2488, 570, lava),
+    new Scenery(3000, 570, lava),
+    new Scenery(3512, 570, lava),
+    new Scenery(4024, 570, lava),
+    new Scenery(4536, 570, lava),
+    new Scenery(4250, 0, endHouse),
+    new Scenery(4400, 220, flame),
+    new Scenery(4600, 506, door),
+    new Scenery(4630, 306, flame),
+    new Scenery(4800, 406, flame),
+    new Scenery(5060, 250, flame),
+    new Scenery(4400, 460, shield),
+]
 
     scrollOffset = 0
 
