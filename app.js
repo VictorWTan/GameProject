@@ -2,8 +2,12 @@
 
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
-let myAudio = document.getElementById('myAudio')
-myAudio.volume = 0.1
+let myAudio = document.querySelector('#myAudio')
+myAudio.volume = 0.05
+console.log(myAudio)
+
+
+
 
 // Creating images for each variable
 let platformSmall = new Image()
@@ -386,7 +390,7 @@ const animate = () => {
 
 
 
-animate()
+document.addEventListener('DOMContentLoaded', animate())
 
 // Add event listeners
 // Add event listener for movement direction

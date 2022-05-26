@@ -1,5 +1,14 @@
 body {
     margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(241, 241, 229);
+    -webkit-text-stroke: 1px rgba(1, 1, 2, 0.706); 
+}
+
+#container{
+    position: relative;
 }
 
 #canvas-1 {
@@ -7,7 +16,39 @@ body {
     background-size: 100% 100%;
     padding-left: 0;
     padding-right: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    margin-top: 5%;
-    display: block;
+    position: absolute;
+}
+
+#start-button{
+    display: flex;
+    position: absolute;
+    top: 60%;
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(243, 243, 222);
+    border-style: solid;
+    border-width: 5px;
+    background: #ebe9da;
+    font-weight: bold; 
+    font-size: 18px;
+    padding: 20px 12px;
+    margin: 30px;
+    box-shadow: 5px 5.1px rgb(82, 77, 77);
+}
+
+#start-screen{
+    background:url('stringstar fields/gifmergedstartscreen.gif');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    width: 900px;
+    height: 600px;
 }
