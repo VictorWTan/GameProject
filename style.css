@@ -9,6 +9,8 @@ body {
 
 #container{
     position: relative;
+    left: 25%;
+    margin-top: 90px;
 }
 
 #canvas-1 {

@@ -10,6 +10,7 @@ myAudio.volume = 0.05
 const startGame = () => {
     startScreen.style.display = 'none'
     canvasOne.style.display = 'flex'
+    myAudio.play()
     gameStart = false;
 }
 
