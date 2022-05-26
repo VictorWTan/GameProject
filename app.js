@@ -6,7 +6,6 @@ let myAudio = document.querySelector('#myAudio')
 let startButton = document.getElementById('start-button')
 let startScreen = document.getElementById('start-screen')
 myAudio.volume = 0.05
-console.log(myAudio)
 
 const startGame = () => {
     startScreen.style.display = 'none'
@@ -14,7 +13,7 @@ const startGame = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    startButton.addEventListener('click', startGame())
+    startButton.addEventListener('click', startGame)
 })
 
 
@@ -75,6 +74,7 @@ let onPlatform = false;
 let frames = 0
 let gameFrame = 0
 const staggerFrames = 22
+let gameOver = false;
 
 
 // Creating a player with all properties 
@@ -398,9 +398,6 @@ const animate = () => {
 }
 
 
-
-document.addEventListener('DOMContentLoaded', animate())
-
 // Add event listeners
 // Add event listener for movement direction
 addEventListener('keydown', ({keyCode}) => {
@@ -454,3 +451,5 @@ addEventListener('keyup', ({keyCode}) => {
         break
     }
 })
+
+animate()
