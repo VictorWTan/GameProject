@@ -37,6 +37,12 @@ body {
     padding: 20px 12px;
     margin: 30px;
     box-shadow: 5px 5.1px rgb(82, 77, 77);
+    transition-duration: 0.4s;
+    cursor: point;
+}
+
+#start-button:hover {
+    transform: scale(1.1);
 }
 
 #start-screen{
