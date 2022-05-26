@@ -394,7 +394,7 @@ const animate = () => {
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
 
     //Win Condition
-    if (scrollOffset > 4100) console.log('You Win')
+    if (scrollOffset > 4200) console.log('You Win')
 
     // Lose condtion
     //if(myPlayer.y > canvasOne.height) init()

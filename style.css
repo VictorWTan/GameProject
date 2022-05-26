@@ -28,7 +28,7 @@ body {
 #start-button{
     display: flex;
     position: absolute;
-    top: 60%;
+    top: 50%;
     font-family: 'Press Start 2P', cursive;
     color: rgb(243, 243, 222);
     border-style: solid;
@@ -57,10 +57,15 @@ body {
     background-position: bottom;
     background-size: cover;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin: auto;
     position: absolute;
     width: 900px;
     height: 600px;
+    flex-direction: column;
+}
+
+footer {
+    font-size: 25px;
 }
