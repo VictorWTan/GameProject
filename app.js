@@ -5,7 +5,15 @@ let ctxOne = canvasOne.getContext('2d')
 let myAudio = document.querySelector('#myAudio')
 let startButton = document.getElementById('start-button')
 let startScreen = document.getElementById('start-screen')
+let startAudio = document.getElementById('start-audio')
+let musicButton = document.getElementById('music-button')
 myAudio.volume = 0.05
+startAudio.volume = 0.05
+
+
+const playMusic = () => {
+    startAudio.play()
+}
 
 const startGame = () => {
     startScreen.style.display = 'none'
@@ -16,6 +24,10 @@ const startGame = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     startButton.addEventListener('click', startGame)
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    musicButton.addEventListener('click', playMusic)
 })
 
 
