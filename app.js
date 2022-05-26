@@ -3,10 +3,19 @@
 let canvasOne = document.getElementById('canvas-1')
 let ctxOne = canvasOne.getContext('2d')
 let myAudio = document.querySelector('#myAudio')
+let startButton = document.getElementById('start-button')
+let startScreen = document.getElementById('start-screen')
 myAudio.volume = 0.05
 console.log(myAudio)
 
+const startGame = () => {
+    startScreen.style.display = 'none'
+    canvasOne.style.display = 'flex'
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+    startButton.addEventListener('click', startGame())
+})
 
 
 // Creating images for each variable
