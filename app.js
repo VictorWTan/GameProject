@@ -23,13 +23,9 @@ const startGame = () => {
     gameStart = false;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    startButton.addEventListener('click', startGame)
-})
+startButton.addEventListener('click', startGame)
+musicButton.addEventListener('click', playMusic)
 
-document.addEventListener('DOMContentLoaded', () => {
-    musicButton.addEventListener('click', playMusic)
-})
 
 
 // Creating images for each variable
