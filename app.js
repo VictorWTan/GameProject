@@ -10,9 +10,20 @@ let musicButton = document.getElementById('music-button')
 let endScreen = document.getElementById('end-screen')
 let restartButton = document.getElementById('restart-button')
 let endAudio = document.getElementById('end-music')
+
+// Setting Global Variables
 myAudio.volume = 0.05
 startAudio.volume = 0.05
 endAudio.volume = 0.05
+canvasOne.width = 900
+canvasOne.height = 600
+const gravity = 1.4
+let frames = 0
+let gameFrame = 0
+const staggerFrames = 8
+let gameStart = false
+let gameOver = false
+let onPlatform = true
 
 
 const playMusic = () => {
@@ -24,7 +35,7 @@ const startGame = () => {
     canvasOne.style.display = 'flex'
     startAudio.pause()
     myAudio.play()
-    gameStart = false;
+    gameStart = true;
 }
 
 startButton.addEventListener('click', startGame)
@@ -92,16 +103,6 @@ flame.src = 'stringstar fields/flame.png'
 shield.src = 'stringstar fields/shield.png'
 miscObjects.src = 'stringstar fields/miscObjects.png'
 
-// Setting Global Variables
-canvasOne.width = 900
-canvasOne.height = 600
-const gravity = .2
-let frames = 0
-let gameFrame = 0
-const staggerFrames = 8
-let gameStart = true
-let gameOver = false
-let onPlatform = true
 
 
 // Creating a player with all properties 
@@ -388,7 +389,7 @@ const animate = () => {
     newLava.forEach(lava => {
         lava.render()
     })
-    if(gameStart === false)myPlayer.update()
+    if(gameStart === true)myPlayer.update()
     
     // If the right key is held, the player moves to the right
     if (keys.right.pressed && myPlayer.x < 450) myPlayer.velocity.x = 8
