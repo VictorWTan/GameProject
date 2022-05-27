@@ -97,3 +97,48 @@ body {
 footer {
     font-size: 25px;
 }
+
+#restart-button{
+    display: flex;
+    position: absolute;
+    top: 63%;
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(243, 243, 222);
+    border-style: solid;
+    border-width: 5px;
+    background: #ebe9da;
+    font-weight: bold; 
+    font-size: 16px;
+    padding: 16px 12px;
+    margin: 30px;
+    box-shadow: 5px 5.1px rgb(82, 77, 77);
+    transition-duration: 0.4s;
+    cursor: point;
+}
+
+#restart-button:hover {
+    transform: scale(1.1);
+}
+
+#restart-button:active{
+    transform: scale(.9);
+}
+
+#end-screen{
+    background:url('stringstar fields/endGameBackground.gif');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    width: 900px;
+    height: 600px;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}

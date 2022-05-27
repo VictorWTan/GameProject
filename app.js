@@ -7,6 +7,8 @@ let startButton = document.getElementById('start-button')
 let startScreen = document.getElementById('start-screen')
 let startAudio = document.getElementById('start-audio')
 let musicButton = document.getElementById('music-button')
+let endScreen = document.getElementById('end-screen')
+let restartButton = document.getElementById('restart-button')
 myAudio.volume = 0.05
 startAudio.volume = 0.05
 
@@ -25,6 +27,20 @@ const startGame = () => {
 
 startButton.addEventListener('click', startGame)
 musicButton.addEventListener('click', playMusic)
+
+const gameEnd = () => {
+    canvasOne.style.display ='none'
+    endScreen.style.display = 'flex'
+    myAudio.pause()
+    gameStart = false
+    gameOver = true
+}
+
+const reloadGame = () => {
+    location.reload()
+}
+
+restartButton.addEventListener('click', reloadGame)
 
 
 
@@ -76,13 +92,13 @@ miscObjects.src = 'stringstar fields/miscObjects.png'
 // Setting Global Variables
 canvasOne.width = 900
 canvasOne.height = 600
-const gravity = .08
-let onPlatform = false;
+const gravity = 1.2
 let frames = 0
 let gameFrame = 0
-const staggerFrames = 22
-let gameStart = true;
-let gameOver = false;
+const staggerFrames = 8
+let gameStart = true
+let gameOver = false
+let onPlatform = true
 
 
 // Creating a player with all properties 
@@ -140,7 +156,7 @@ class Player {
         this.x += this.velocity.x
         // Add gravity aka acceleration
         if (this.y + this.height + this.velocity.y <= canvasOne.height) this.velocity.y += gravity
-        else this.velocity.y = 0
+        else init()
     }
 }
 
@@ -174,7 +190,6 @@ class Scenery {
 }
 
 // Creating all the objects
-let myPlayer = new Player()
 let platforms = [
     new Platform(690, 430, platformSmall), 
     new Platform(1050, 340, tallTower),
@@ -250,6 +265,8 @@ let newLava = [
 
 ]
 
+let myPlayer = new Player()
+
 // Storing values for the state of key presses
 const keys = {
     right: {
@@ -268,7 +285,7 @@ let scrollOffset = 0
 
 // On death, reset the position of everything
 function init() {
-myPlayer = new Player()
+
 platforms = [
     new Platform(690, 430, platformSmall), 
     new Platform(1050, 340, tallTower),
@@ -342,14 +359,17 @@ newLava = [
     new Scenery(5060, 250, flame),
     new Scenery(4400, 460, shield),
 ]
-
+    myPlayer = new Player()
     scrollOffset = 0
 
 }   
 
+let fps = 60
+
 const animate = () => {
     // Calls on itself to constantly animate the player
-    requestAnimationFrame(animate)
+    setTimeout(function(){
+        requestAnimationFrame(animate)
     // Clear the canvas that was previously rendered on
     ctxOne.clearRect(0, 0, canvasOne.width, canvasOne.height)
     newScenery.forEach(scenery => {
@@ -368,28 +388,28 @@ const animate = () => {
     if(gameStart === false)myPlayer.update()
     
     // If the right key is held, the player moves to the right
-    if (keys.right.pressed && myPlayer.x < 450) myPlayer.velocity.x = 2
+    if (keys.right.pressed && myPlayer.x < 450) myPlayer.velocity.x = 8
     // If the left key is held, the player moves to the left
-    else if (keys.left.pressed && myPlayer.x > 200) myPlayer.velocity.x = -2
+    else if (keys.left.pressed && myPlayer.x > 200) myPlayer.velocity.x = -8
     // Otherwise, the character is not moving
     else {
         myPlayer.velocity.x = 0
         // If the player presses the right key, we simulate scrolling by moving platforms and scenery
         if (keys.right.pressed) {
-            scrollOffset += 2
-            platforms.forEach(platform =>  platform.x -= 2)
-            newLava.forEach(lava => lava.x -= 2)
-            newScenery.forEach(scenery => scenery.x -= .5 )    
-            newSceneryTwo.forEach(scenery => scenery.x -= 1 ) 
+            scrollOffset += 8
+            platforms.forEach(platform =>  platform.x -= 8)
+            newLava.forEach(lava => lava.x -= 8)
+            newScenery.forEach(scenery => scenery.x -= 2 )    
+            newSceneryTwo.forEach(scenery => scenery.x -= 4 ) 
             
         }
         // If the player presses left key, we simulate scrolling by moving platforms and scenery to the left
         else if (keys.left.pressed) {
-            scrollOffset -= 2
-            platforms.forEach(platform => platform.x += 2)
-            newLava.forEach(lava => lava.x += 2)
-            newScenery.forEach(scenery => scenery.x += .5 )
-            newSceneryTwo.forEach(scenery => scenery.x += 1 ) 
+            scrollOffset -= 8
+            platforms.forEach(platform => platform.x += 8)
+            newLava.forEach(lava => lava.x += 8)
+            newScenery.forEach(scenery => scenery.x += 2 )
+            newSceneryTwo.forEach(scenery => scenery.x += 4 ) 
             
         }
     }
@@ -403,18 +423,23 @@ const animate = () => {
             myPlayer.x <= platform.x + platform.width) 
             {
             myPlayer.velocity.y = 0
+            onPlatform = true
         }
 
     })
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
 
     //Win Condition
-    if (scrollOffset > 4200) console.log('You Win')
+    if (scrollOffset > 16400) {}
+
+    
 
     // Lose condtion
     //if(myPlayer.y > canvasOne.height) init()
+}, 1000/fps)
 }
 
+let changeInterval = null;
 
 // Add event listeners
 // Add event listener for movement direction
@@ -436,9 +461,10 @@ addEventListener('keydown', ({keyCode}) => {
         myPlayer.currentSprite = myPlayer.sprites.run.right
         break
         case 38: case 87:
-        if(keys.up.pressed) {
-            myPlayer.velocity.y += -6 
+        if(keys.up.pressed && onPlatform) {
+            myPlayer.velocity.y += -25 
             keys.up.pressed = false
+            onPlatform = false
         }
         console.log('up')
         break
