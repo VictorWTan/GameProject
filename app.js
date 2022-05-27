@@ -9,8 +9,10 @@ let startAudio = document.getElementById('start-audio')
 let musicButton = document.getElementById('music-button')
 let endScreen = document.getElementById('end-screen')
 let restartButton = document.getElementById('restart-button')
+let endAudio = document.getElementById('end-music')
 myAudio.volume = 0.05
 startAudio.volume = 0.05
+endAudio.volume = 0.05
 
 
 const playMusic = () => {
@@ -34,6 +36,7 @@ const gameEnd = () => {
     myAudio.pause()
     gameStart = false
     gameOver = true
+    endAudio.play()
 }
 
 const reloadGame = () => {
@@ -92,7 +95,7 @@ miscObjects.src = 'stringstar fields/miscObjects.png'
 // Setting Global Variables
 canvasOne.width = 900
 canvasOne.height = 600
-const gravity = 1.2
+const gravity = .2
 let frames = 0
 let gameFrame = 0
 const staggerFrames = 8
@@ -430,7 +433,7 @@ const animate = () => {
     if(myPlayer.velocity.y === 0) keys.up.pressed = true
 
     //Win Condition
-    if (scrollOffset > 16400) {}
+    if (scrollOffset > 4250) gameEnd()
 
     
 
