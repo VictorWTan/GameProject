@@ -8,9 +8,9 @@ body {
 }
 
 #container{
-    position: relative;
-    left: 25%;
-    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px;
 }
 
 #canvas-1 {
